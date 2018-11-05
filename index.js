@@ -1,4 +1,5 @@
 const Todo = require("./models/Todo");
+const User = require("./models/User");
 
 Todo.getAll().then(results => {
   console.log(results);

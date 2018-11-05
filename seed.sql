@@ -10,8 +10,8 @@ values
 insert into users
     (name)
 values  
-    ('aylin')
-    ('beth')
-    ('chris')
-    ('bruce')
+    ('aylin'),
+    ('beth'),
+    ('chris'),
+    ('bruce'),
     ('schtinky bull');
