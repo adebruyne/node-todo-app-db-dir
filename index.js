@@ -36,19 +36,31 @@ function getById(id) {
 // ************************************
 // add a row
 function add(name, completed) {
-  return db.result(`insert into todos (name,completed)
+  return db.result(
+    `insert into todos (name,completed)
         values
-            ('${name}', ${completed})
-            returning id`);
+            ($1, $2)
+            returning id`,
+    [name, completed]
+  );
 }
 
-add("do the timewarp", false)
-  .catch(err => {
-    console.log(err);
-  })
-  .then(result => {
-    console.log(result);
-  });
-// updating a row
+// add("Hydrate!", false)
+//   .catch(err => {
+//     console.log(err);
+//   })
+//   .then(result => {
+//     console.log(result);
+//   });
 
+// *************************************
 // deleting a row
+function deleteById(id) {
+  return db.result(`delete from todos where id=$1`, [id]);
+}
+
+deleteById(7).then(result => {
+  console.log(result);
+});
+
+// updating a row
