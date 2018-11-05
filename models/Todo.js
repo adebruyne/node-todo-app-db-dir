@@ -105,3 +105,13 @@ function markPending(id) {
 // markCompleted(1).then(result => {
 //   console.log(result);
 // });
+
+module.exports = {
+  getAll,
+  getById,
+  add,
+  updateName,
+  markCompleted,
+  markPending,
+  deleteById
+};
