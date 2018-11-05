@@ -59,8 +59,37 @@ function deleteById(id) {
   return db.result(`delete from todos where id=$1`, [id]);
 }
 
-deleteById(7).then(result => {
+// deleteById(7).then(result => {
+//   console.log(result.rowCount);
+// });
+
+//******************************* */
+// updating a row
+function updateCompleted(id, didComplete) {
+  return db.result(
+    `update todos
+        set completed=$2
+        where id=$1`,
+    [id, didComplete]
+  );
+}
+
+function markCompleted(id) {
+  return updateCompleted(id, true);
+  //   return db.result(
+  //     `update todos
+  //         set completed=true
+  //         where id=$1`,
+  //     [id]
+  //   );
+}
+function markPending(id) {
+  return updateCompleted(id, false);
+  // return db.result(`update todos
+  // set completed=$2
+  // where id=$1`, [id, false])
+}
+
+markCompleted(1).then(result => {
   console.log(result);
 });
-
-// updating a row
