@@ -3,3 +3,9 @@ create table todos (
     name text,
     completed boolean
 );
+
+
+create table users (
+    id serial primary key,
+    name text
+);

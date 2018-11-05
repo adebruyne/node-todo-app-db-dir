@@ -6,3 +6,12 @@ values
     ('juice the beets', false),
     ('wash your stinky feet', false),
     ('pitter patter', false);
+
+insert into users
+    (name)
+values  
+    ('aylin')
+    ('beth')
+    ('chris')
+    ('bruce')
+    ('schtinky bull');
