@@ -1,3 +1,5 @@
+require(`dotenv`).config();
+
 const Todo = require("./models/Todo");
 const User = require("./models/User");
 
