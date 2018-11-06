@@ -1,11 +1,6 @@
 // ============================================
 // Database Connection
-const pgp = require("pg-promise")();
-const db = pgp({
-  host: "localhost",
-  port: 5432,
-  database: "node-todo-app-db"
-});
+const db = require("./db");
 // ============================================
 
 // ============================================

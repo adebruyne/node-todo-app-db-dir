@@ -1,6 +1,10 @@
 const Todo = require("./models/Todo");
 const User = require("./models/User");
 
+User.getAll().then(results => {
+  console.log(results);
+});
+
 Todo.getAll().then(results => {
   console.log(results);
 });

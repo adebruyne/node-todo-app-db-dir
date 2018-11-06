@@ -1,12 +1,4 @@
-// const pgPromise = require('pg-promise');
-
-const pgp = require("pg-promise")();
-
-const db = pgp({
-  host: "localhost",
-  port: 5432,
-  database: "node-todo-app-db-dir"
-});
+const db = require("./db");
 
 //************************************* */
 // grabbing all the rows
