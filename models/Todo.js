@@ -2,6 +2,7 @@ const db = require("./db");
 
 //************************************* */
 // grabbing all the rows
+//static
 function getAll() {
   return db.any("select * from todos");
 }
@@ -11,6 +12,7 @@ function getAll() {
 
 //*********************************** */
 //grabbing one row
+//static
 function getById(id) {
   return db
     .one(`select * from todos where id = ${id}`)
@@ -27,6 +29,7 @@ function getById(id) {
 
 // ************************************
 // add a row
+//static
 function add(name, completed) {
   return db.result(
     `insert into todos (name,completed)
@@ -47,6 +50,7 @@ function add(name, completed) {
 
 // *************************************
 // deleting a row
+//this
 function deleteById(id) {
   return db.result(`delete from todos where id=$1`, [id]);
 }
@@ -57,7 +61,7 @@ function deleteById(id) {
 
 //******************************* */
 // updating a row
-
+//this
 function updateName(id, name) {
   return db.result(
     `update todos set name=$2
@@ -69,6 +73,7 @@ function updateName(id, name) {
 //   console.log(result)
 // });
 
+//this
 function updateCompleted(id, didComplete) {
   return db.result(
     `update todos
@@ -77,7 +82,7 @@ function updateCompleted(id, didComplete) {
     [id, didComplete]
   );
 }
-
+//this
 function markCompleted(id) {
   return updateCompleted(id, true);
   //   return db.result(
@@ -87,6 +92,7 @@ function markCompleted(id) {
   //     [id]
   //   );
 }
+//this
 function markPending(id) {
   return updateCompleted(id, false);
   // return db.result(`update todos

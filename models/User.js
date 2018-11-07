@@ -12,6 +12,7 @@ class User {
     this.id = id;
     this.name = name;
   }
+  static add(name)
 
   //a method is a function "belongs" to an object
   greet(otherUser) {
@@ -23,29 +24,33 @@ class User {
     return db.any("select * from users");
   }
 
-  getById() {
-    return db.one("select * from users where id = $1", [this.id]);
+ static getById(id) {
+    return db.one("select * from users where id = $1", [id])
+    .then(result => {
+      const u = new User(result.id, result.name);
+      return u;
+    });
   }
-}
-
-// ============================================
-// CREATE
-function add(name) {
-  return db.one(
-    `
+  // ============================================
+  // CREATE
+  static add(name) {
+    return db
+      .one(
+        `
         insert into users 
             (name)
         values
             ($1)
         returning id    
     `,
-    [name]
-  );
-}
-
-// ============================================
-// UPDATE
-function updateName(id, name) {
+        [name]
+      )
+      .then(id => {
+        const u = new User(id, name);
+        return u;
+      });
+  }
+static updateName(id, name) {
   return db.result(
     `
         update users
@@ -55,6 +60,11 @@ function updateName(id, name) {
     [id, name]
   );
 }
+}
+
+// ============================================
+// UPDATE
+
 
 // ============================================
 // DELETE
