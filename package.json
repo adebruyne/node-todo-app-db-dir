@@ -6,7 +6,7 @@
   "scripts": {
     "debug": "node --inspect-brk index.js",
     "dev": "nodemon index.js",
-    "reset-db": "dropdb node-todo-db-dir; createdb node-todo-app-db-dir; psql -f schema.sql node-todo-app-db-dir; psql -f seed.sql node-todo-app-db-dir;",
+    "reset-db": "dropdb node-todo-app-db-dir; createdb node-todo-app-db-dir; psql -f schema.sql node-todo-app-db-dir; psql -f seed.sql node-todo-app-db-dir;",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

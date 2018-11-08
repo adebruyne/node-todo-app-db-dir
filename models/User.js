@@ -16,7 +16,23 @@ class User {
   // ============================================
   // RETRIEVE
   static getAll() {
-    return db.any("select * from users");
+    return db
+      .any(
+        `
+        select * from users
+    `
+      )
+      .then(userArray => {
+        console.log(userArray);
+        // transform array of objects
+        // into array of User instances
+        const instanceArray = userArray.map(userObj => {
+          const u = new User(userObj.id, userObj.name);
+          console.log(u);
+          return u;
+        });
+        return instanceArray;
+      });
   }
 
   static getById(id) {

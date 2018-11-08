@@ -104,12 +104,13 @@ function markPending(id) {
 //   console.log(result);
 // });
 
-module.exports = {
-  getAll,
-  getById,
-  add,
-  updateName,
-  markCompleted,
-  markPending,
-  deleteById
-};
+// module.exports = {
+//   getAll,
+//   getById,
+//   add,
+//   updateName,
+//   markCompleted,
+//   markPending,
+//   deleteById
+// };
+module.exports = Todo;
