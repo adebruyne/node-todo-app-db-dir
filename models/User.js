@@ -12,21 +12,15 @@ class User {
     this.id = id;
     this.name = name;
   }
-  static add(name)
 
-  //a method is a function "belongs" to an object
-  greet(otherUser) {
-    console.log(`Hello ${otherUser}, I am ${this.name}`);
-  }
   // ============================================
   // RETRIEVE
-  getAll() {
+  static getAll() {
     return db.any("select * from users");
   }
 
- static getById(id) {
-    return db.one("select * from users where id = $1", [id])
-    .then(result => {
+  static getById(id) {
+    return db.one("select * from users where id = $1", [id]).then(result => {
       const u = new User(result.id, result.name);
       return u;
     });
@@ -50,40 +44,32 @@ class User {
         return u;
       });
   }
-static updateName(id, name) {
-  return db.result(
-    `
+  static updateName(id, name) {
+    return db.result(
+      `
         update users
             set name=$2
         where id=$1
     `,
-    [id, name]
-  );
-}
+      [id, name]
+    );
+  }
+  // ============================================
+  // DELETE
+  deleteById(id) {
+    return db.result(
+      `
+    delete from users
+    where id = $1
+    `,
+      [id]
+    );
+  }
+
+  // ============================================
 }
 
 // ============================================
 // UPDATE
 
-
-// ============================================
-// DELETE
-function deleteById(id) {
-  return db.result(
-    `
-    delete from users
-    where id = $1
-    `,
-    [id]
-  );
-}
-
-// ============================================
-
-module.exports = {
-  add,
-  deleteById,
-  getAll,
-  getById,
-  updateName
-};
+module.exports = User;
