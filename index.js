@@ -3,6 +3,9 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 
+//hooks up css
+app.use(express.static("public"));
+
 //Configure body-parser to read data sent by HTML form
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -10,22 +13,41 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const User = require("./models/User");
-
+const page = require("./views/page");
+const userList = require(`./views/userList`);
 //Listen for a GET request
 app.get("/", (req, res) => {
   console.log("waiting for response");
+  const thePage = page("hey there");
+  res.send(thePage);
+  // User.getAll()
+  //   .then(allUsers => {
+  //     res.send(allUsers);
+  //   })
+  //   .catch(err => {
+  //     res.send({
+  //       message: "What the fork?!"
+  //     });
+  //   });
+  //   res.send("Hello Express");
+});
+
+app.get("/users", (req, res) => {
   User.getAll()
     .then(allUsers => {
-      res.send(allUsers);
+      const usersUL = userList(allUsers);
+      console.log(usersUL);
+      console.log("conswela?");
+      const thePage = page(usersUL);
+      res.send(thePage);
     })
     .catch(err => {
+      console.log(err);
       res.send({
         message: "What the fork?!"
       });
     });
-  //   res.send("Hello Express");
 });
-
 //Listen for POST requests
 app.post("/users", (req, res) => {
   //   console.log(req.body);

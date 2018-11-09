@@ -23,7 +23,7 @@ class User {
     `
       )
       .then(userArray => {
-        console.log(userArray);
+        // console.log(userArray);
         // transform array of objects
         // into array of User instances
         const instanceArray = userArray.map(userObj => {
@@ -31,6 +31,7 @@ class User {
           console.log(u);
           return u;
         });
+        // console.log(instanceArray);
         return instanceArray;
       });
   }
