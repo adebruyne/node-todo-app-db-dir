@@ -3,7 +3,7 @@ function userToItem(userObject) {
     <li class="user-list-item">
       <a href='/users/${userObject.id}/todos'>${
     userObject.name
-  }</a><ahref="">(edit)</a></li>
+  }</a><a href="">(edit)</a></li>
 `;
 }
 
